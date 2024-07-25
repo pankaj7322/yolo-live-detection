@@ -29,12 +29,11 @@ st.sidebar.title("Options")
 conf_threshold = st.sidebar.slider("Confidence Threshold", 0.0, 1.0, 0.5)
 run_webcam = st.sidebar.checkbox("Run Webcam Feed", value=True)
 
-# Session state for control
-if "stop" not in st.session_state:
-    st.session_state.stop = False
-
+# Initialize webcam capture
+cap = None
 if run_webcam:
     st.write("Webcam is running...")
+
     # Create a placeholder for the webcam feed
     frame_placeholder = st.empty()
 
@@ -44,11 +43,10 @@ if run_webcam:
     cap.set(4, 480)
 
     # Stop button
-    if st.button('Stop'):
-        st.session_state.stop = True
+    stop_button = st.button('Stop')
 
     # Display the webcam feed
-    while not st.session_state.stop:
+    while cap.isOpened() and not stop_button:
         ret, frame = cap.read()
         if not ret:
             st.write("Failed to grab frame.")
@@ -79,7 +77,12 @@ if run_webcam:
         # Display the frame in Streamlit
         frame_placeholder.image(image, channels="RGB", use_column_width=True)
 
-    cap.release()
+        # Refresh the stop button state
+        stop_button = st.button('Stop')
+
+    if cap:
+        cap.release()
+
     st.write("Webcam stopped.")
 else:
     st.write("Check the checkbox to run the webcam feed.")
