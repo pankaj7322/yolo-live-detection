@@ -19,10 +19,12 @@ This project implementes real-time object detection using the YOLOv8 model with 
         ```bash
             https://github.com/pankaj7322/yolo-live-detection.git
             cd yolo-live-detection
+        ```
             
     2. Install Dependencies:
         ```bash
             pip install -r requirements.txt
+        ```
 ### Usage
 1. Start the Streamlit App
      ```Bash 
