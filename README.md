@@ -16,19 +16,20 @@ This project implementes real-time object detection using the YOLOv8 model with 
     `pillow`
 #### Setup
     1. Clone the Repository:
-        ```bash
+        ```
             https://github.com/pankaj7322/yolo-live-detection.git
             cd yolo-live-detection
         ```
             
     2. Install Dependencies:
-        ```bash
+        ```
             pip install -r requirements.txt
         ```
 ### Usage
 1. Start the Streamlit App
-     ```Bash 
+     ```
         streamlit run yolo_live_video.py
+     ```
 2. Interact with the Web Interface
     - Use the sidebar to set the confidence threshold and control the webcam feed.
     - Upload video files if webcam access is not available or preferred
